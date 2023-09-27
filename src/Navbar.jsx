@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function Navbar({ searchInput, setSearchInput }) {
+export default function Navbar({ setSearchInput }) {
     const [localInput, setLocalInput] = useState("");
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -60,7 +60,7 @@ export default function Navbar({ searchInput, setSearchInput }) {
     };
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" sx={{ backgroundColor: "warning.main" }}>
                 <Toolbar>
                     <IconButton
                         size="large"

@@ -4,6 +4,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import * as React from "react";
+import Typography from "@mui/material/Typography";
 
 export default function BasicList({ searchResults }) {
     return (
@@ -18,11 +20,28 @@ export default function BasicList({ searchResults }) {
                 {searchResults &&
                     searchResults.map((result) => (
                         <>
-                            <ListItem key={result.objectID} disablePadding>
-                                <ListItemButton key={crypto.randomUUID()}>
+                            <ListItem key={result.objectID}>
+                                <ListItemButton
+                                    key={crypto.randomUUID()}
+                                    component="a"
+                                    href={result.url}
+                                >
                                     <ListItemText
                                         key={crypto.randomUUID()}
-                                        primary={result.title}
+                                        primary={
+                                            <React.Fragment>
+                                                {result.title}
+                                                <Typography
+                                                    sx={{ display: "inline" }}
+                                                    component="span"
+                                                    variant="body2"
+                                                    color="text.secondary"
+                                                >
+                                                    {`(${result.url})`}
+                                                </Typography>
+                                            </React.Fragment>
+                                        }
+                                        secondary={`${result.points} points by ${result.author} ${result.num_comments} comments`}
                                     />
                                 </ListItemButton>
                             </ListItem>
