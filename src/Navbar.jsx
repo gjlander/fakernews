@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -51,7 +51,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function Navbar() {
+export default function Navbar({ searchInput, setSearchInput }) {
+    const [localInput, setLocalInput] = useState("");
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        setSearchInput(localInput);
+        setLocalInput("");
+    };
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -74,16 +80,23 @@ export default function Navbar() {
                             display: { xs: "none", sm: "block" },
                         }}
                     >
-                        MUI
+                        Hacker News
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ "aria-label": "search" }}
-                        />
+                        <form onSubmit={(e) => handleSearchSubmit(e)}>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ "aria-label": "search" }}
+                                value={localInput}
+                                onChange={(event) => {
+                                    setLocalInput(event.target.value);
+                                }}
+                                onSubmit={(e) => handleSearchSubmit(e)}
+                            />
+                        </form>
                     </Search>
                 </Toolbar>
             </AppBar>
