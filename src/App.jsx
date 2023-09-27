@@ -30,6 +30,7 @@ function App() {
                 {...searchResults}
             />
             <SearchResults
+                searchInput={searchInput}
                 searchResults={searchResults}
                 setSearchResults={setSearchResults}
                 {...searchResults}

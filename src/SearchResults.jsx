@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 
-export default function BasicList({ searchResults }) {
+export default function BasicList({ searchInput, searchResults }) {
     return (
         <Box
             sx={{
@@ -16,6 +16,9 @@ export default function BasicList({ searchResults }) {
                 bgcolor: "background.paper",
             }}
         >
+            <h2>
+                {searchInput ? `Results for "${searchInput}"` : "Top stories"}
+            </h2>
             <List key={crypto.randomUUID()}>
                 {searchResults &&
                     searchResults.map((result) => (
