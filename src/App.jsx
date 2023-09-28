@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Pagination from "@mui/material/Pagination";
 import Navbar from "./Navbar";
 import SearchResults from "./SearchResults";
 import Spinner from "./Spinner";
+
 function App() {
     const [searchResults, setSearchResults] = useState();
     const [searchInput, setSearchInput] = useState("");
@@ -37,12 +39,20 @@ function App() {
             {loading ? (
                 <Spinner />
             ) : (
-                <SearchResults
-                    searchInput={searchInput}
-                    searchResults={searchResults}
-                    setSearchResults={setSearchResults}
-                    {...searchResults}
-                />
+                <>
+                    <SearchResults
+                        searchInput={searchInput}
+                        searchResults={searchResults}
+                        setSearchResults={setSearchResults}
+                        {...searchResults}
+                    />
+                    <Pagination
+                        count={10}
+                        variant="outlined"
+                        shape="rounded"
+                        color="warning"
+                    />
+                </>
             )}
         </>
     );

@@ -9,7 +9,6 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 
 export default function BasicList({ searchInput, searchResults }) {
-    const [loading, setLoading] = useState(false);
     return (
         <Box
             sx={{
