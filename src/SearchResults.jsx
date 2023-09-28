@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,6 +9,7 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 
 export default function BasicList({ searchInput, searchResults }) {
+    const [loading, setLoading] = useState(false);
     return (
         <Box
             sx={{

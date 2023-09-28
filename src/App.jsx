@@ -2,21 +2,26 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import SearchResults from "./SearchResults";
+import Spinner from "./Spinner";
 function App() {
     const [searchResults, setSearchResults] = useState();
     const [searchInput, setSearchInput] = useState("");
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
-        async function getResults() {
+        setLoading(true);
+        const getResults = async () => {
             try {
                 const response = await axios.get(
                     `http://hn.algolia.com/api/v1/search?query=${searchInput}`
                 );
                 console.log(response.data);
                 setSearchResults(response.data.hits);
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
-        }
+        };
         getResults();
     }, [searchInput]);
 
@@ -29,12 +34,16 @@ function App() {
                 setSearchInput={setSearchInput}
                 {...searchResults}
             />
-            <SearchResults
-                searchInput={searchInput}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                {...searchResults}
-            />
+            {loading ? (
+                <Spinner />
+            ) : (
+                <SearchResults
+                    searchInput={searchInput}
+                    searchResults={searchResults}
+                    setSearchResults={setSearchResults}
+                    {...searchResults}
+                />
+            )}
         </>
     );
 }
