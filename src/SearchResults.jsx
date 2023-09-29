@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 
-export default function BasicList({ searchInput, searchResults }) {
+export default function BasicList({ searchInput, searchResults, page }) {
     return (
         <Box
             sx={{
@@ -20,6 +19,7 @@ export default function BasicList({ searchInput, searchResults }) {
             <h2>
                 {searchInput ? `Results for "${searchInput}"` : "Top stories"}
             </h2>
+            <Typography>Page: {page}</Typography>
             <List key={crypto.randomUUID()}>
                 {searchResults &&
                     searchResults.map((result) => (
