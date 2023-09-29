@@ -70,7 +70,7 @@ export default function Navbar({ setSearchInput, setPage }) {
                             display: { xs: "none", sm: "block" },
                         }}
                     >
-                        Hacker News
+                        Faker News
                     </Typography>
                     <Search>
                         <SearchIconWrapper>

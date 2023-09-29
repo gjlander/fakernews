@@ -3,9 +3,9 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Navbar from "./Navbar";
-import SearchResults from "./SearchResults";
-import Spinner from "./Spinner";
+import Navbar from "./components/Navbar";
+import SearchResults from "./components/SearchResults";
+import Spinner from "./components/Spinner";
 
 function App() {
     const [searchResults, setSearchResults] = useState();
@@ -22,7 +22,7 @@ function App() {
         const getResults = async () => {
             try {
                 const response = await axios.get(
-                    `http://hn.algolia.com/api/v1/search?query=${searchInput}&page=${page}`
+                    `https://hn.algolia.com/api/v1/search?query=${searchInput}&page=${page}`
                 );
                 console.log(response.data);
                 setSearchResults(response.data.hits);
