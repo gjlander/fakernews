@@ -22,7 +22,7 @@ function App() {
         const getResults = async () => {
             try {
                 const response = await axios.get(
-                    `http://hn.algolia.com/api/v1/search?query=${searchInput}&page=${page}`
+                    `https://hn.algolia.com/api/v1/search?query=${searchInput}&page=${page}`
                 );
                 console.log(response.data);
                 setSearchResults(response.data.hits);
